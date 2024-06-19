@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-item style="padding-top: 20px;">
+    <br><br><br><br><br><br>
+  <ion-toolbar>
+    <ion-title class="Lcenter-title">
+      ClamaPaz
+    </ion-title>
+    <p class="pcenter">Eres el dueño de tu mente</p>
+    <br><img src="assets/img/cuida.jpg" alt="Descripción de la imagen" class="imgcuida" />
+
+  </ion-toolbar>
+  </ion-item>
+
+
+
+  <ion-content [fullscreen]="true">
+    <ion-item class="zoom-animation">
+  
+        <ion-toolbar>
+          <ion-title class="L2center-title">
+            Bienvenido!
+          </ion-title>
+        </ion-toolbar>
+    </ion-item>
+      <br><br><br>
+      <form (ngSubmit)="submitForm()">
+        <div class="example-container">
+          <ion-input class="ion1" label="Usuario" label-placement="floating" fill="solid" placeholder="Ingrese su usuario" [(ngModel)]="usuario" name="usuario"></ion-input>
+          <br>
+        </div>
+        <div class="example-container">
+          <ion-input class="ion1" type="password" label="Contraseña" label-placement="floating" fill="solid" placeholder="Ingrese su contraseña" [(ngModel)]="contrasena" name="contrasena"></ion-input>
+          <br>
+        </div>
+        <section>
+          <div class="example-button-row">
+            <a mat-flat-button color="basic" [routerLink]="['/home']">Ingresar</a>
+          </div>
+        </section>
+      </form>
+      
+      
