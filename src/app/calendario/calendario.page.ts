@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ServicioDBService } from '../services/servicio-db.service';
 
 @Component({
   selector: 'app-calendario',
@@ -12,20 +13,36 @@ export class CalendarioPage implements OnInit {
   dateForm: FormGroup;
   mostrarMensajefecha: boolean = true;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private dbservicio: ServicioDBService) {
     this.dateForm = this.fb.group({
       selectedDate: ['']
     });
   }
 
   ngOnInit() {
+   /* this.loadLastSavedDate();*/
+
   }
 
-  saveDate() {
+  /*
+  async loadLastSavedDate() {
+    const lastSavedDate = await this.dbservicio.getLastSavedDate();
+    if (lastSavedDate) {
+      this.dateForm.patchValue({ selectedDate: new Date(lastSavedDate) });
+    }
+  }*/
+
+  
+ /* async saveDate() {
     const selectedDate = this.dateForm.value.selectedDate;
-    console.log('Selected Date:', selectedDate);
-    // Aquí puedes agregar lógica para guardar la fecha, por ejemplo, enviar a un servidor o guardar en almacenamiento local.
-  }
+    console.log('Selección de fecha:', selectedDate);
+      //borrar la fecha
+  const borrarfecha = new Date(selectedDate).toLocaleDateString('eo-HH');
+  //guardar la fecha
+  await this.dbservicio.saveSelectedDate(borrarfecha);
+}*/
+    
+  
 
   mostrarMensaje(tipo: string) {
     this.ocultarMensajes();
@@ -36,4 +53,7 @@ export class CalendarioPage implements OnInit {
   ocultarMensajes() {
     this.mostrarMensajefecha = false;
   }
+
 }
+
+

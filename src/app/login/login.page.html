@@ -24,18 +24,18 @@
     </ion-item>
       <br><br><br>
       <form (ngSubmit)="submitForm()">
-        <div class="example-container">
-          <ion-input class="ion1" label="Usuario" label-placement="floating" fill="solid" placeholder="Ingrese su usuario" [(ngModel)]="usuario" name="usuario"></ion-input>
-          <br>
-        </div>
-        <div class="example-container">
-          <ion-input class="ion1" type="password" label="Contraseña" label-placement="floating" fill="solid" placeholder="Ingrese su contraseña" [(ngModel)]="contrasena" name="contrasena"></ion-input>
-          <br>
-        </div>
+        <label for="username">Username:</label>
+        <ion-input type="text" id="username" class="centrolab"[(ngModel)]="username" name="username" required></ion-input>
+        <br>
+        <label for="password">Password:</label>
+        <ion-input type="password" id="password" class="centrolab" [(ngModel)]="password" name="password" required></ion-input>
+        <br>
         <section>
           <div class="example-button-row">
-            <a mat-flat-button color="basic" [routerLink]="['/home']">Ingresar</a>
+            <ion-button (click)="login()">Login</ion-button>
+          <ion-button (click)="register()">Register</ion-button>
           </div>
+          
         </section>
       </form>
       
