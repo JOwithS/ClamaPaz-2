@@ -191,4 +191,20 @@ async haveaccess(): Promise<boolean> {
     console.log(`Usuario autenticado: ${isLoggedIn}`);
     return isLoggedIn;
   }
+
+    // Función para guardar la fecha seleccionada en Ionic Storage
+    async saveSelectedDate(selectedDate: Date) {
+      const formattedDate = selectedDate.toISOString(); // ISO format
+      await this._storage?.set('selectedDate', formattedDate);
+    }
+    //obtener la fecha seleccionada
+    async getSelectedDate(): Promise<string | null> {
+      return await this._storage?.get('selectedDate');
+    }
+  
+    // Función para eliminar la fecha seleccionada
+    async deleteSelectedDate() {
+      await this._storage?.remove('selectedDate');
+    }
+
 }

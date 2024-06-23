@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ServicioDBService } from '../services/servicio-db.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-analisis',
@@ -26,7 +28,7 @@ export class AnalisisPage implements OnInit {
   
 
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private servicedb: ServicioDBService,private router: Router) { }
 
   ngOnInit() {
     this.nombre = this.route.snapshot.paramMap.get('nombre') || '';
@@ -94,5 +96,11 @@ export class AnalisisPage implements OnInit {
 
   irAUrl(url: string) {
     window.location.href = url;
+  }
+
+  async logout() {
+    await this.servicedb.logout();
+    this.router.navigate(['/login'],  { replaceUrl: true }); 
+    console.log('Usuario deslogueado');
   }
 }

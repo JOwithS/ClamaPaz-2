@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ServicioDBService } from '../services/servicio-db.service';
 
+
 @Component({
   selector: 'app-calendario',
   templateUrl: './calendario.page.html',
@@ -20,29 +21,30 @@ export class CalendarioPage implements OnInit {
   }
 
   ngOnInit() {
-   /* this.loadLastSavedDate();*/
+   this.loadLastSavedDate();
 
   }
+//guardar l fecha señeccionada
+async loadLastSavedDate() {
+  const lastSavedDate = await this.dbservicio.getSelectedDate();
+  if (lastSavedDate) {
+    const dateObj = new Date(lastSavedDate);
+    this.dateForm.patchValue({ selectedDate: dateObj });
+  }
+}
 
-  /*
-  async loadLastSavedDate() {
-    const lastSavedDate = await this.dbservicio.getLastSavedDate();
-    if (lastSavedDate) {
-      this.dateForm.patchValue({ selectedDate: new Date(lastSavedDate) });
-    }
-  }*/
-
-  
- /* async saveDate() {
+  //guardar esaaaa fecha
+  async saveDate() {
     const selectedDate = this.dateForm.value.selectedDate;
-    console.log('Selección de fecha:', selectedDate);
-      //borrar la fecha
-  const borrarfecha = new Date(selectedDate).toLocaleDateString('eo-HH');
-  //guardar la fecha
-  await this.dbservicio.saveSelectedDate(borrarfecha);
-}*/
-    
-  
+    if (selectedDate) {
+      await this.dbservicio.saveSelectedDate(new Date(selectedDate));
+    }
+  }
+//borrar esa fechaa
+  async deleteDate() {
+    await this.dbservicio.deleteSelectedDate();
+    this.dateForm.patchValue({ selectedDate: '' });
+  }
 
   mostrarMensaje(tipo: string) {
     this.ocultarMensajes();
@@ -54,6 +56,8 @@ export class CalendarioPage implements OnInit {
     this.mostrarMensajefecha = false;
   }
 
+
+  
 }
 
 
